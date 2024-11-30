@@ -1,8 +1,14 @@
+using Microsoft.EntityFrameworkCore;
+using ProyectoWeb.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddDbContext<DbventasContext>(conexion =>
+{
+    conexion.UseSqlServer(builder.Configuration.GetConnectionString("ConexionBD"));
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
